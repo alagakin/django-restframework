@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from customers.models import Group, Customer
+
+admin.site.register(Group)
+admin.site.register(Customer)
