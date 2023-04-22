@@ -13,6 +13,18 @@ class CustomerSerializer(serializers.Serializer):
     is_published = serializers.BooleanField(default=True)
     group_id = serializers.IntegerField()
 
+    def create(self, validated_data):
+        return Customer.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get('name', instance.name)
+        instance.content = validated_data.get('content', instance.content)
+        instance.time_update = validated_data.get('time_update', instance.time_update)
+        instance.is_published = validated_data.get('is_published', instance.is_published)
+        instance.group_id = validated_data.get('group_id', instance.group_id)
+        instance.save()
+        return instance
+
 # class CustomerModel:
 #     def __init__(self, name, content):
 #         self.name = name
