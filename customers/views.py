@@ -7,8 +7,14 @@ from customers.serializers import CustomerSerializer, GroupSerializer
 
 
 class CustomersViewSet(viewsets.ModelViewSet):
-    queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
+
+    def get_queryset(self):
+        pk = self.kwargs.get('pk')
+        if not pk:
+            return Customer.objects.all()[:3]
+        else:
+            return Customer.objects.filter(pk=pk)
 
     @action(methods=['get'], detail=False)
     def groups(self, request):
