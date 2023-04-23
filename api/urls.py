@@ -1,9 +1,15 @@
 from django.contrib import admin
-from django.urls import path
-from customers.views import  CustomersApiList, CustomerAPIDetailView
+from django.urls import path, include
+from customers.views import CustomersViewSet
+
+from rest_framework import routers
+
+router = routers.SimpleRouter()
+router.register(r'customers', CustomersViewSet)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/customers/', CustomersApiList.as_view()),
-    path('api/v1/customer/<int:pk>/', CustomerAPIDetailView.as_view())
+    path('api/v1/', include(router.urls))
+
 ]

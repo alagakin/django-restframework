@@ -1,13 +1,8 @@
-from rest_framework import generics
+from rest_framework import generics, viewsets
 from customers.models import Customer
 from customers.serializers import CustomerSerializer
 
 
-class CustomersApiList(generics.ListCreateAPIView):
-    queryset = Customer.objects.all()
-    serializer_class = CustomerSerializer
-
-
-class CustomerAPIDetailView(generics.RetrieveUpdateDestroyAPIView):
+class CustomersViewSet(viewsets.ModelViewSet):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
