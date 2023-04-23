@@ -3,6 +3,8 @@ from customers.models import Customer, Group
 
 
 class CustomerSerializer(serializers.ModelSerializer):
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
     class Meta:
         model = Customer
         fields = "__all__"
