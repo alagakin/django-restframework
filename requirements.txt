@@ -3,3 +3,4 @@ djangorestframework==3.13.0
 pyyaml
 requests
 django-cors-headers
+djoser
