@@ -20,7 +20,7 @@ class CustomerAPIUpdate(generics.RetrieveUpdateAPIView):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
     permission_classes = (IsAuthenticated,)
-    authentication_classes = (TokenAuthentication,)
+    # authentication_classes = (TokenAuthentication,)
 
 
 class CustomerAPIDestroy(generics.RetrieveDestroyAPIView):
