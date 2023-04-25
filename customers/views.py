@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from rest_framework import generics, viewsets
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import action
@@ -34,3 +35,9 @@ class CustomerAPIDestroy(generics.RetrieveDestroyAPIView):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
     permission_classes = (IsAdminOrReadOnly,)
+
+
+def test_view(request):
+    a = 1/0
+
+    return JsonResponse({'test': 'test'})

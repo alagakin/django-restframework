@@ -3,11 +3,13 @@ from django.urls import path, include, re_path
 from rest_framework_simplejwt.views import TokenVerifyView, TokenRefreshView, \
     TokenObtainPairView
 
-from customers.views import CustomerAPIList, CustomerAPIUpdate, CustomerAPIDestroy
+from customers.views import CustomerAPIList, CustomerAPIUpdate, \
+    CustomerAPIDestroy, test_view
 
 from rest_framework import routers
 
 urlpatterns = [
+    path('', test_view),
     path('admin/', admin.site.urls),
     path('api/v1/customers/', CustomerAPIList.as_view()),
     path('api/v1/customers/<int:pk>/', CustomerAPIUpdate.as_view()),
