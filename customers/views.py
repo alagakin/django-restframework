@@ -1,3 +1,6 @@
+import logging
+import time
+
 from django.http import JsonResponse
 from rest_framework import generics, viewsets
 from rest_framework.authentication import TokenAuthentication
@@ -11,6 +14,7 @@ from customers.models import Customer, Group
 from customers.permissions import IsAdminOrReadOnly, IsOwnedOrReadOnly
 from customers.serializers import CustomerSerializer, GroupSerializer
 
+logger = logging.getLogger(__name__)
 
 class CustomerAPIListPagination(PageNumberPagination):
     page_size = 3
@@ -38,6 +42,5 @@ class CustomerAPIDestroy(generics.RetrieveDestroyAPIView):
 
 
 def test_view(request):
-    a = 1/0
-
+    logger.critical("hello! I'm warning")
     return JsonResponse({'test': 'test'})
